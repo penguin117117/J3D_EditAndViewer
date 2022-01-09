@@ -18,6 +18,11 @@ namespace J3D_EditAndViewer.IO
             return BitConverter.ToUInt16(ReadReverse2Byte(br), 0);
         }
 
+        public static uint ReadUInt32(BinaryReader br)
+        {
+            return BitConverter.ToUInt32(ReadReverse4Byte(br), 0);
+        }
+
         public static short ReadInt16(BinaryReader br)
         {
             return BitConverter.ToInt16(ReadReverse2Byte(br), 0);

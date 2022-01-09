@@ -57,8 +57,17 @@
     <Compile Include="FileFormat\Model_3D\BDL.cs" />
     <Compile Include="FileFormat\Model_3D\IModel_3D.cs" />
     <Compile Include="FileFormat\SectionFormat\INF1.cs" />
+    <Compile Include="FileFormat\SectionFormat\VTX1.cs" />
+    <Compile Include="FileFormat\SectionFormat\VTX1ColorData\IVertexColors.cs" />
+    <Compile Include="FileFormat\SectionFormat\VTX1ColorData\RGB565.cs" />
+    <Compile Include="FileFormat\SectionFormat\VTX1ColorData\RGB8.cs" />
+    <Compile Include="FileFormat\SectionFormat\VTX1ColorData\RGBA4.cs" />
+    <Compile Include="FileFormat\SectionFormat\VTX1ColorData\RGBA6.cs" />
+    <Compile Include="FileFormat\SectionFormat\VTX1ColorData\RGBA8.cs" />
+    <Compile Include="FileFormat\SectionFormat\VTX1ColorData\RGBX8.cs" />
     <Compile Include="IO\BigEndian.cs" />
     <Compile Include="IO\J3DFileDialog.cs" />
+    <Compile Include="IO\J3DFileStreamSys.cs" />
     <Compile Include="UI\MainWindow.cs">
       <SubType>Form</SubType>
     </Compile>

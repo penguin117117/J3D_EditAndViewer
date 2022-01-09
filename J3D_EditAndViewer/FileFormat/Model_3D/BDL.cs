@@ -13,19 +13,20 @@ namespace J3D_EditAndViewer.FileFormat.Model_3D
     {
         
         public INF1 SceneTreeData { get; private set; }
+        public VTX1 VerTexData { get; private set; }
 
         public BDL()
         {
-            SceneTreeData = null;
+            SceneTreeData = new INF1();
+            VerTexData = new VTX1();
         }
 
         public void Read(FileStream fs)
         {
-            SceneTreeData = new INF1();
-
             using (BinaryReader br = new BinaryReader(fs))
             {
                 SceneTreeData.Read(br);
+                VerTexData.Read(br,SceneTreeData.VertexCount);
             }
         }
 
