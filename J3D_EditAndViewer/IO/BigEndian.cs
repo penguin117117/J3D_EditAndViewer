@@ -35,7 +35,12 @@ namespace J3D_EditAndViewer.IO
         /// <returns></returns>
         public static int ReadInt32(BinaryReader br) 
         {
-            return BitConverter.ToInt32(ReadReverse4Byte(br),0);
+            return BitConverter.ToInt32(ReadReverse4Byte(br), 0);
+        }
+
+        public static float ReadFloat(BinaryReader br)
+        {
+            return BitConverter.ToSingle(ReadReverse4Byte(br), 0);
         }
 
         private static byte[] ReadReverse2Byte(BinaryReader br)
@@ -54,6 +59,16 @@ namespace J3D_EditAndViewer.IO
             for (int i = 0; i < Int32Size; i++)
             {
                 ReverseBytes[Int32Size - OffByOne - i] = br.ReadByte();
+            }
+            return ReverseBytes;
+        }
+
+        private static byte[] ReadReverse4ByteTest(BinaryReader br) 
+        {
+            byte[] ReverseBytes = new byte[Int32Size];
+            for (int i = 0; i < Int32Size; i++)
+            {
+                ReverseBytes[i] = br.ReadByte();
             }
             return ReverseBytes;
         }

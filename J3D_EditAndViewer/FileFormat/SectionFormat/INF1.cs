@@ -76,6 +76,7 @@ namespace J3D_EditAndViewer.FileFormat.SectionFormat
 
             //INF1のデータを読み込みます
             ReadSceneNodes(br);
+            J3DFileStreamSys.PaddingSkip(br);
         }
 
         private void ReadSceneNodes(BinaryReader br) 

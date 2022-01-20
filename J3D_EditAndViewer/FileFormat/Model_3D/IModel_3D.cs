@@ -7,6 +7,7 @@ namespace J3D_EditAndViewer.FileFormat.Model_3D
     {
         //byte HierarchyDepth { get; }
         INF1 SceneTreeData { get; }
+        VTX1 VerTexData { get; }
         void Read(FileStream fs);
     }
 }

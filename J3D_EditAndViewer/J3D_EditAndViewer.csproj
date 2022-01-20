@@ -56,7 +56,11 @@
     <Compile Include="FileFormat\J3D.cs" />
     <Compile Include="FileFormat\Model_3D\BDL.cs" />
     <Compile Include="FileFormat\Model_3D\IModel_3D.cs" />
+    <Compile Include="FileFormat\SectionFormat\DRW1.cs" />
+    <Compile Include="FileFormat\SectionFormat\EVP1.cs" />
     <Compile Include="FileFormat\SectionFormat\INF1.cs" />
+    <Compile Include="FileFormat\SectionFormat\JNT1.cs" />
+    <Compile Include="FileFormat\SectionFormat\SHP1.cs" />
     <Compile Include="FileFormat\SectionFormat\VTX1.cs" />
     <Compile Include="FileFormat\SectionFormat\VTX1ColorData\IVertexColors.cs" />
     <Compile Include="FileFormat\SectionFormat\VTX1ColorData\RGB565.cs" />
@@ -65,6 +69,14 @@
     <Compile Include="FileFormat\SectionFormat\VTX1ColorData\RGBA6.cs" />
     <Compile Include="FileFormat\SectionFormat\VTX1ColorData\RGBA8.cs" />
     <Compile Include="FileFormat\SectionFormat\VTX1ColorData\RGBX8.cs" />
+    <Compile Include="FileFormat\SectionFormat\VTX1PrimData\IPrim.cs" />
+    <Compile Include="FileFormat\SectionFormat\VTX1PrimData\IPrimGet.cs" />
+    <Compile Include="FileFormat\SectionFormat\VTX1PrimData\PrimByte.cs" />
+    <Compile Include="FileFormat\SectionFormat\VTX1PrimData\PrimFloat.cs" />
+    <Compile Include="FileFormat\SectionFormat\VTX1PrimData\PrimModify.cs" />
+    <Compile Include="FileFormat\SectionFormat\VTX1PrimData\PrimSByte.cs" />
+    <Compile Include="FileFormat\SectionFormat\VTX1PrimData\PrimShort.cs" />
+    <Compile Include="FileFormat\SectionFormat\VTX1PrimData\PrimUShort.cs" />
     <Compile Include="IO\BigEndian.cs" />
     <Compile Include="IO\J3DFileDialog.cs" />
     <Compile Include="IO\J3DFileStreamSys.cs" />
