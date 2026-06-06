@@ -23,7 +23,7 @@ using System.Windows.Forms;
 namespace J3DEditorAndViewer.UI.Renderer
 {
 
-    internal class OpenGL4 : IRenderer
+    internal class OpenGLv4 : IRenderer
     {
         bool _disposed = false;
 
@@ -55,7 +55,7 @@ void main() {
 }
 ";
 
-        public OpenGL4(J3DFileDialog j3d_FileDialog, int width, int height)
+        public OpenGLv4(J3DFileDialog j3d_FileDialog, int width, int height)
         {
             Width = width;
             Height = height;
@@ -80,7 +80,7 @@ void main() {
             CameraAngle = new(0.0f, 0.0f);
             CameraDistance = 3.0f;
         }
-        ~OpenGL4()
+        ~OpenGLv4()
         {
             Dispose();
         }

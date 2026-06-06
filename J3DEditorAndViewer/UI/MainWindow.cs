@@ -39,7 +39,7 @@ namespace J3DEditorAndViewer
 
             renderer?.Dispose();
 
-            renderer = new OpenGL4(J3D_FileDialog, glControl.Width, glControl.Height);
+            renderer = new OpenGLv4(J3D_FileDialog, glControl.Width, glControl.Height);
             IsModelLoad = true;
 
             renderer.Update(glControl);

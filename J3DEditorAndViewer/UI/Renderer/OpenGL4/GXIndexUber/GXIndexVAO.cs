@@ -78,10 +78,10 @@ namespace J3DEditorAndViewer.UI.Renderer.OpenGL4.GXIndexUber
             GL.VertexAttribPointer((int)VertexLocation.Part_ModelPosMat1, 1, VertexAttribPointerType.Float, false, VerticesElementsStrideSize, 4);
             GL.VertexAttribPointer((int)VertexLocation.Part_ModelPosMat2, 1, VertexAttribPointerType.Float, false, VerticesElementsStrideSize, 8);
 
-            GL.VertexAttribIPointer((int)VertexLocation.O_PositionMatrix, 1, VertexAttribIntegerType.Int, VerticesElementsStrideSize, Marshal.OffsetOf<>(nameof(GXElement.PositionMatrix)));
-            GL.VertexAttribIPointer((int)VertexLocation.O_TexMat0t3, 4, VertexAttribIntegerType.Int, VerticesElementsStrideSize, Marshal.OffsetOf<>(nameof(GXElement.PositionMatrix)));
-            GL.VertexAttribIPointer((int)VertexLocation.O_TexMat4t7, 4, VertexAttribIntegerType.Int, VerticesElementsStrideSize, Marshal.OffsetOf<>(nameof(GXElement.PositionMatrix)));
-            GL.VertexAttribIPointer((int)VertexLocation.O_Pos_NBT_Color0t1, 4, VertexAttribIntegerType.Int, VerticesElementsStrideSize, Marshal.OffsetOf<>);
+            GL.VertexAttribIPointer((int)VertexLocation.O_PositionMatrix, 1, VertexAttribIntegerType.Int, VerticesElementsStrideSize, Marshal.OffsetOf<GXElement>(nameof(GXElement.PositionMatrix)));
+            GL.VertexAttribIPointer((int)VertexLocation.O_TexMat0t3, 4, VertexAttribIntegerType.Int, VerticesElementsStrideSize, Marshal.OffsetOf<GXElement>(nameof(GXElement.PositionMatrix)));
+            GL.VertexAttribIPointer((int)VertexLocation.O_TexMat4t7, 4, VertexAttribIntegerType.Int, VerticesElementsStrideSize, Marshal.OffsetOf<GXElement>(nameof(GXElement.PositionMatrix)));
+            GL.VertexAttribIPointer((int)VertexLocation.O_Pos_NBT_Color0t1, 4, VertexAttribIntegerType.Int, VerticesElementsStrideSize, Marshal.OffsetOf<GXElement>(nameof(GXElement.Color0)) * 2);
             GL.VertexAttribIPointer((int)VertexLocation.O_TexCoord0t3, 4, VertexAttribIntegerType.Int, VerticesElementsStrideSize, 0);
             GL.VertexAttribIPointer((int)VertexLocation.O_TexCoord4t7, 4, VertexAttribIntegerType.Int, VerticesElementsStrideSize, 0);
 

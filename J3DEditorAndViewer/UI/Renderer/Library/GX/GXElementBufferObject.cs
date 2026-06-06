@@ -47,7 +47,9 @@ namespace J3DEditorAndViewer.UI.Renderer.Library.GX
 
             offsetObjectsGLBufId = GL.GenBuffer();
             GL.BindBuffer(gLBufTarget, offsetObjectsGLBufId);
-            GL.BufferData(gLBufTarget, Marshal.SizeOf<GXElement>() * 1, ref OffsetObjects, BufferUsageHint.StaticDraw);
+            // TODO: 迂回策なので修正する必要あり
+            var a = OffsetObjects;
+            GL.BufferData(gLBufTarget, Marshal.SizeOf<GXElement>() * 1, ref a, BufferUsageHint.StaticDraw);
 
             GL.BindBuffer(gLBufTarget, 0);
         }
