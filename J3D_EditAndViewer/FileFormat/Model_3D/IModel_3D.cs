@@ -1,7 +1,7 @@
 ﻿using System.IO;
-using J3D_EditAndViewer.FileFormat.SectionFormat;
+using J3DEditorAndViewer.FileFormat.SectionFormat;
 
-namespace J3D_EditAndViewer.FileFormat.Model_3D
+namespace J3DEditorAndViewer.FileFormat.Model_3D
 {
     public interface IModel_3D
     {

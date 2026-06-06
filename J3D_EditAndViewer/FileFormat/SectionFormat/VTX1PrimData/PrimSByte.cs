@@ -5,9 +5,9 @@ using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
-using J3D_EditAndViewer.IO;
+using J3DEditorAndViewer.IO;
 
-namespace J3D_EditAndViewer.FileFormat.SectionFormat.VTX1PrimData
+namespace J3DEditorAndViewer.FileFormat.SectionFormat.VTX1PrimData
 {
     public class PrimSByte : IPrim
     {

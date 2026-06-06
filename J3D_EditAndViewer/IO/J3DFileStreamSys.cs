@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.IO;
 using OpenTK;
 
-namespace J3D_EditAndViewer.IO
+namespace J3DEditorAndViewer.IO
 {
     public class J3DFileStreamSys
     {

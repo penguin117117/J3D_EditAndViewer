@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
-using J3D_EditAndViewer.IO;
+using J3DEditorAndViewer.IO;
 using OpenTK.Graphics.OpenGL;
 using OpenTK;
 
-namespace J3D_EditAndViewer.FileFormat.SectionFormat
+namespace J3DEditorAndViewer.FileFormat.SectionFormat
 {
     public class EVP1
     {

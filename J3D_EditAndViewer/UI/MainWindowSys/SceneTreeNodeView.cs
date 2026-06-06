@@ -4,9 +4,9 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
-using J3D_EditAndViewer.FileFormat;
+using J3DEditorAndViewer.FileFormat;
 
-namespace J3D_EditAndViewer.UI.MainWindowSys
+namespace J3DEditorAndViewer.UI.MainWindowSys
 {
     public class SceneTreeNodeView
     {

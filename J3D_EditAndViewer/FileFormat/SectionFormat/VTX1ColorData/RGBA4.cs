@@ -6,14 +6,15 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace J3D_EditAndViewer.FileFormat.SectionFormat.VTX1ColorData
+namespace J3DEditorAndViewer.FileFormat.SectionFormat.VTX1ColorData
 {
     public class RGBA4 : IVertexColors
     {
-        public Vector4 GetColorVector4 => throw new NotImplementedException();
+        public Vector4 GetColorVector4 { get; private set; }
 
-        public void GetColor(BinaryReader br)
+        public Vector4 GetColor(BinaryReader br)
         {
+            // 2bytes
             throw new NotImplementedException();
         }
     }

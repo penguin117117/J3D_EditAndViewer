@@ -4,11 +4,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
-using J3D_EditAndViewer.FileFormat.Model_3D;
-using J3D_EditAndViewer.IO;
+using J3DEditorAndViewer.FileFormat.Model_3D;
+using J3DEditorAndViewer.IO;
 
 
-namespace J3D_EditAndViewer.FileFormat
+namespace J3DEditorAndViewer.FileFormat
 {
 
     public class J3D

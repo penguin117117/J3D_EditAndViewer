@@ -1,5 +1,5 @@
 ﻿
-namespace J3D_EditAndViewer
+namespace J3DEditorAndViewer
 {
     partial class MainWindow
     {
@@ -52,14 +52,15 @@ namespace J3D_EditAndViewer
             this.glControl.BackColor = System.Drawing.Color.Black;
             this.glControl.Dock = System.Windows.Forms.DockStyle.Fill;
             this.glControl.Location = new System.Drawing.Point(0, 0);
-            this.glControl.Margin = new System.Windows.Forms.Padding(8, 6, 8, 6);
+            this.glControl.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.glControl.Name = "glControl";
-            this.glControl.Size = new System.Drawing.Size(1025, 626);
+            this.glControl.Size = new System.Drawing.Size(615, 452);
             this.glControl.TabIndex = 0;
             this.glControl.VSync = false;
             this.glControl.Load += new System.EventHandler(this.glControl_Load);
             this.glControl.Paint += new System.Windows.Forms.PaintEventHandler(this.glControl_Paint);
             this.glControl.KeyDown += new System.Windows.Forms.KeyEventHandler(this.glControl_KeyDown);
+            this.glControl.MouseMove += new System.Windows.Forms.MouseEventHandler(this.glControl_MouseMove);
             this.glControl.MouseWheel += new System.Windows.Forms.MouseEventHandler(this.glControl_MouseWheel);
             this.glControl.Resize += new System.EventHandler(this.glControl_Resize);
             // 
@@ -70,10 +71,9 @@ namespace J3D_EditAndViewer
             | System.Windows.Forms.AnchorStyles.Right)));
             this.MainPanel.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
             this.MainPanel.Controls.Add(this.GL_Panel);
-            this.MainPanel.Location = new System.Drawing.Point(302, 40);
-            this.MainPanel.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.MainPanel.Location = new System.Drawing.Point(181, 29);
             this.MainPanel.Name = "MainPanel";
-            this.MainPanel.Size = new System.Drawing.Size(1029, 630);
+            this.MainPanel.Size = new System.Drawing.Size(619, 456);
             this.MainPanel.TabIndex = 0;
             // 
             // GL_Panel
@@ -82,9 +82,8 @@ namespace J3D_EditAndViewer
             this.GL_Panel.Controls.Add(this.glControl);
             this.GL_Panel.Dock = System.Windows.Forms.DockStyle.Fill;
             this.GL_Panel.Location = new System.Drawing.Point(0, 0);
-            this.GL_Panel.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.GL_Panel.Name = "GL_Panel";
-            this.GL_Panel.Size = new System.Drawing.Size(1025, 626);
+            this.GL_Panel.Size = new System.Drawing.Size(615, 452);
             this.GL_Panel.TabIndex = 0;
             this.GL_Panel.Resize += new System.EventHandler(this.GL_Panel_Resize);
             // 
@@ -95,17 +94,17 @@ namespace J3D_EditAndViewer
             this.panel1.Controls.Add(this.button1);
             this.panel1.Controls.Add(this.textBox1);
             this.panel1.Controls.Add(this.SceneTreeView);
-            this.panel1.Location = new System.Drawing.Point(20, 48);
-            this.panel1.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.panel1.Location = new System.Drawing.Point(12, 35);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(267, 620);
+            this.panel1.Size = new System.Drawing.Size(160, 448);
             this.panel1.TabIndex = 2;
             // 
             // button1
             // 
-            this.button1.Location = new System.Drawing.Point(74, 582);
+            this.button1.Location = new System.Drawing.Point(2, 421);
+            this.button1.Margin = new System.Windows.Forms.Padding(2);
             this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(177, 30);
+            this.button1.Size = new System.Drawing.Size(106, 22);
             this.button1.TabIndex = 2;
             this.button1.Text = "button1";
             this.button1.UseVisualStyleBackColor = true;
@@ -115,9 +114,8 @@ namespace J3D_EditAndViewer
             // 
             this.textBox1.Dock = System.Windows.Forms.DockStyle.Left;
             this.textBox1.Location = new System.Drawing.Point(0, 0);
-            this.textBox1.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(267, 25);
+            this.textBox1.Size = new System.Drawing.Size(162, 20);
             this.textBox1.TabIndex = 0;
             // 
             // SceneTreeView
@@ -125,23 +123,20 @@ namespace J3D_EditAndViewer
             this.SceneTreeView.Anchor = ((System.Windows.Forms.AnchorStyles)((((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Bottom) 
             | System.Windows.Forms.AnchorStyles.Left) 
             | System.Windows.Forms.AnchorStyles.Right)));
-            this.SceneTreeView.Location = new System.Drawing.Point(0, 38);
-            this.SceneTreeView.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.SceneTreeView.Location = new System.Drawing.Point(0, 27);
             this.SceneTreeView.Name = "SceneTreeView";
-            this.SceneTreeView.Size = new System.Drawing.Size(264, 537);
+            this.SceneTreeView.Size = new System.Drawing.Size(160, 389);
             this.SceneTreeView.TabIndex = 1;
             this.SceneTreeView.AfterSelect += new System.Windows.Forms.TreeViewEventHandler(this.SceneTreeView_AfterSelect);
             // 
             // menuStrip1
             // 
-            this.menuStrip1.GripMargin = new System.Windows.Forms.Padding(2, 2, 0, 2);
             this.menuStrip1.ImageScalingSize = new System.Drawing.Size(24, 24);
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.fileToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
-            this.menuStrip1.Padding = new System.Windows.Forms.Padding(10, 3, 0, 3);
-            this.menuStrip1.Size = new System.Drawing.Size(294, 35);
+            this.menuStrip1.Size = new System.Drawing.Size(177, 24);
             this.menuStrip1.TabIndex = 1;
             this.menuStrip1.Text = "menuStrip1";
             // 
@@ -150,37 +145,35 @@ namespace J3D_EditAndViewer
             this.fileToolStripMenuItem.DropDownItems.AddRange(new System.Windows.Forms.ToolStripItem[] {
             this.openToolStripMenuItem});
             this.fileToolStripMenuItem.Name = "fileToolStripMenuItem";
-            this.fileToolStripMenuItem.Size = new System.Drawing.Size(54, 29);
+            this.fileToolStripMenuItem.Size = new System.Drawing.Size(37, 20);
             this.fileToolStripMenuItem.Text = "File";
             // 
             // openToolStripMenuItem
             // 
             this.openToolStripMenuItem.Name = "openToolStripMenuItem";
-            this.openToolStripMenuItem.Size = new System.Drawing.Size(270, 34);
+            this.openToolStripMenuItem.Size = new System.Drawing.Size(103, 22);
             this.openToolStripMenuItem.Text = "Open";
             this.openToolStripMenuItem.Click += new System.EventHandler(this.OpenToolStripMenuItem_Click);
             // 
             // splitter1
             // 
             this.splitter1.Dock = System.Windows.Forms.DockStyle.Right;
-            this.splitter1.Location = new System.Drawing.Point(294, 0);
-            this.splitter1.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
+            this.splitter1.Location = new System.Drawing.Point(177, 0);
             this.splitter1.Name = "splitter1";
-            this.splitter1.Size = new System.Drawing.Size(1039, 672);
+            this.splitter1.Size = new System.Drawing.Size(623, 485);
             this.splitter1.TabIndex = 3;
             this.splitter1.TabStop = false;
             // 
             // MainWindow
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(10F, 18F);
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1333, 672);
+            this.ClientSize = new System.Drawing.Size(800, 485);
             this.Controls.Add(this.panel1);
             this.Controls.Add(this.MainPanel);
             this.Controls.Add(this.menuStrip1);
             this.Controls.Add(this.splitter1);
             this.MainMenuStrip = this.menuStrip1;
-            this.Margin = new System.Windows.Forms.Padding(5, 4, 5, 4);
             this.Name = "MainWindow";
             this.Text = "J3D_EditAndViewer";
             this.Load += new System.EventHandler(this.MainWindow_Load);

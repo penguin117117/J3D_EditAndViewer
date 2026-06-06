@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 using System.IO;
 using OpenTK;
 
-namespace J3D_EditAndViewer.FileFormat.SectionFormat.VTX1PrimData
+namespace J3DEditorAndViewer.FileFormat.SectionFormat.VTX1PrimData
 {
     public class PrimByte : IPrim
     {

@@ -4,15 +4,16 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.IO;
-using J3D_EditAndViewer.IO;
-using J3D_EditAndViewer.FileFormat.SectionFormat.VTX1ColorData;
+using J3DEditorAndViewer.IO;
+using J3DEditorAndViewer.FileFormat.SectionFormat.VTX1ColorData;
 using System.IO.Compression;
-using J3D_EditAndViewer.FileFormat.SectionFormat.VTX1PrimData;
+using J3DEditorAndViewer.FileFormat.SectionFormat.VTX1PrimData;
 using OpenTK;
 using System.Drawing;
 using System.Diagnostics;
+using OpenTK.Graphics.OpenGL;
 
-namespace J3D_EditAndViewer.FileFormat.SectionFormat
+namespace J3DEditorAndViewer.FileFormat.SectionFormat
 {
     /*
      * Note:オフセット値の具体的なアドレスは下記です
@@ -28,6 +29,7 @@ namespace J3D_EditAndViewer.FileFormat.SectionFormat
         private long SectionBaseAddres;
 
         private string SectionName;
+        private long SectionBegin; // debug
         private int SectionSize;
         private int VertexFormatOffset;
         private int PositionDataArrayOffset;
@@ -40,7 +42,7 @@ namespace J3D_EditAndViewer.FileFormat.SectionFormat
 
         //private byte VertexAttributeCount;
         private List<(bool, int)> IsReadArray;
-
+        public List<Vector3>[] Color { get; private set; }
         public List<Vector3> Position { get; private set; }
         public List<Vector3> Normal { get; private set; }
         public List<Vector3> Dummy { get; private set; }
@@ -57,6 +59,7 @@ namespace J3D_EditAndViewer.FileFormat.SectionFormat
 
         public VTX1()
         {
+            Color = new List<Vector3>[2];
             Position = new List<Vector3>();
             Normal = new List<Vector3>();
             Dummy = new List<Vector3>();
@@ -71,6 +74,16 @@ namespace J3D_EditAndViewer.FileFormat.SectionFormat
             ColorDataBytes = new byte[COLOR_ARRAY_MAX][];
             TexturerCoordBytes = new byte[TEXTURE_ARRAY_MAX][];
         }
+
+        [Conditional("DEBUG")]
+        void ThrowWhenOverSize(BinaryReader br)
+        {
+            if (br.BaseStream.Position > (SectionBegin + SectionSize))
+            {
+                throw new IndexOutOfRangeException();
+            }
+        }
+
         public void Read(BinaryReader br, int vertexCount)
         {
             Console.WriteLine("VTX1 Start");
@@ -81,6 +94,8 @@ namespace J3D_EditAndViewer.FileFormat.SectionFormat
 
 
             //ヘッダー
+            SectionBegin = br.BaseStream.Position;
+            Debug.WriteLine($"VTX1 Begin Pos: {SectionSize:X}");
             SectionName = Encoding.ASCII.GetString(br.ReadBytes(4));
             SectionSize = BigEndian.ReadInt32(br);
             VertexFormatOffset = BigEndian.ReadInt32(br);
@@ -99,7 +114,7 @@ namespace J3D_EditAndViewer.FileFormat.SectionFormat
 
             for (int i = 0; i < 13; i++)
             {
-                Debug.Write($"{Enum.GetName(typeof(ArrayName),i)}:");
+                Debug.Write($"{Enum.GetName(typeof(ArrayName), i)}:");
                 SetOffsetPositionAndIsRead(br);
             }
 
@@ -112,6 +127,8 @@ namespace J3D_EditAndViewer.FileFormat.SectionFormat
 
             //pos
             ReadArrays(br);
+
+            ThrowWhenOverSize(br);
 
             Console.WriteLine($"↑{nameof(ReadArrays)}の実装が完全ではない為間違った範囲までバイナリを読み込んでしまっています");
             Console.WriteLine($"endpos: {br.BaseStream.Position.ToString("X")}");
@@ -175,12 +192,12 @@ namespace J3D_EditAndViewer.FileFormat.SectionFormat
             {
                 Console.WriteLine($"{vtx1.Value.GXAttr}_BinaryReadPos:{br.BaseStream.Position:X}");
 
-                if(!(vtx1.Value.GXAttr == GXAttributeTypes.NullAttribute))
-                Console.WriteLine($"{nameof(vtx1.Value.GXAttr)}:{vtx1.Value}");
-                
-                
+                if (!(vtx1.Value.GXAttr == GXAttributeTypes.NullAttribute))
+                    Console.WriteLine($"{nameof(vtx1.Value.GXAttr)}:{vtx1.Value}");
 
-                switch (vtx1.Value.GXAttr) 
+
+
+                switch (vtx1.Value.GXAttr)
                 {
                     case GXAttributeTypes.NullAttribute:
                         br.BaseStream.Seek(vertexPosition + SectionSize, SeekOrigin.Begin);
@@ -188,14 +205,27 @@ namespace J3D_EditAndViewer.FileFormat.SectionFormat
                         break;
 
                     case GXAttributeTypes.Color0:
+                        br.BaseStream.Seek(IsReadArray.ElementAt((int)vtx1.Value.GXAttr).Item2, SeekOrigin.Begin);
+
+                        for (int i = 0; i < vtx1.Value.GXCompCount; i++)
+                        {
+                            // Color[0].Add(GXColorTypes[vtx1.Value.GXCompType].GetColor(br));
+                            GXColorTypes[vtx1.Value.GXCompType].GetColor(br);
+                        }
+                        break;
+
                     case GXAttributeTypes.Color1:
                         br.BaseStream.Seek(IsReadArray.ElementAt((int)vtx1.Value.GXAttr).Item2, SeekOrigin.Begin);
+
                         for (int i = 0; i < vtx1.Value.GXCompCount; i++)
+                        {
+                            // Color[1].Add(GXColorTypes[vtx1.Value.GXCompType].GetColor(br));
                             GXColorTypes[vtx1.Value.GXCompType].GetColor(br);
+                        }
                         break;
 
                     case GXAttributeTypes.Position:
-                        br.BaseStream.Seek(IsReadArray.ElementAt((int)vtx1.Value.GXAttr).Item2,SeekOrigin.Begin);
+                        br.BaseStream.Seek(IsReadArray.ElementAt((int)vtx1.Value.GXAttr).Item2, SeekOrigin.Begin);
 
                         for (int j = 0; j < _inf1VertexCount; j++)
                         {
@@ -206,13 +236,15 @@ namespace J3D_EditAndViewer.FileFormat.SectionFormat
                     case GXAttributeTypes.Normal:
                         br.BaseStream.Seek(IsReadArray.ElementAt((int)vtx1.Value.GXAttr).Item2, SeekOrigin.Begin);
 
-                        for (int j = 0; j < _inf1VertexCount/3; j++)
+                        for (int j = 0; j < _inf1VertexCount / 3; j++)
                         {
                             Normal.Add(GXDataTypes[vtx1.Value.GXCompType].Set(br, vtx1.Value.CompShift));
                         }
                         break;
+
                     default:
                         br.BaseStream.Seek(IsReadArray.ElementAt((int)vtx1.Value.GXAttr).Item2, SeekOrigin.Begin);
+
                         for (int j = 0; j < vtx1.Value.GXCompCount; j++)
                         {
                             Dummy.Add(GXDataTypes[vtx1.Value.GXCompType].Set(br, vtx1.Value.CompShift));
@@ -285,13 +317,13 @@ namespace J3D_EditAndViewer.FileFormat.SectionFormat
 
             if (dataOffset > 0)
             {
-                IsReadArray.Add((true,   (int)SectionBaseAddres + dataOffset));
+                IsReadArray.Add((true, (int)SectionBaseAddres + dataOffset));
             }
-            else 
+            else
             {
                 //オフセットが0の場合はそのデータ配列が
                 //VTX1セクションに存在しないので読み込まない
-                IsReadArray.Add((false,  (int)SectionBaseAddres + dataOffset));
+                IsReadArray.Add((false, (int)SectionBaseAddres + dataOffset));
             }
 
             Debug.WriteLine($":{dataOffset}");

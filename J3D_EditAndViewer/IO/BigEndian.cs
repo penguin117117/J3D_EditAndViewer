@@ -5,7 +5,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.IO;
 
-namespace J3D_EditAndViewer.IO
+namespace J3DEditorAndViewer.IO
 {
     public static class BigEndian
     {
